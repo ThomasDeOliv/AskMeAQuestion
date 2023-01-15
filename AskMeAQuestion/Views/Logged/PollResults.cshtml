@@ -1,0 +1,71 @@
+﻿@model AskMeAQuestion.Services.ViewModel.PollResultsViewModel
+
+@{
+    Layout = "_LoggedLayout";
+    ViewData["Title"] = @Model.PollTitle + " - Résultats";
+}
+
+<div id="personnalSpaceTitle">
+    <h2>Suivi des résultats</h2>
+</div>
+<div class="pollCreatorContainer">
+        <div class="pollDescriptionTitle">
+            <div class="formLine">
+                <h4 id="pollEntryType">Titre</h4>
+                <input class="customInput" asp-for="PollTitle" id="pollTitle" disabled>  
+            </div>                      
+        </div>
+        <div class="pollDescriptionTitle">
+            <div class="formLine">
+                <h4 id="pollEntryType">Description</h4>
+                <textarea class="customInput" asp-for="PollDescription" id="pollDescription" disabled></textarea> 
+            </div>
+        </div>           
+        <div class="pollDescriptionTitle">
+            <div class="formLine">
+                <h4 id="pollEntryType">Résultats des votes</h4>
+            </div>
+        </div>
+        <div id="upperContainer">
+            <div id="lowerContainer">
+                @foreach(var item in Model.PollVotes)
+                {                  
+                    <div class="pollListItem">
+                        <h5 class="proposition">@item.VoteResponseDescription</h5>
+                        <h5 class="proposition">Pourcentage des votes : @item.VotePrctOfVotes %</h5>
+                        <h5 class="proposition">Nombre de voix : @item.VoteNumber</h5>
+                    </div>
+                }
+            </div>
+        </div>             
+        @{
+            string pollType = Model.PollMultipleAnswers ? "Plusieurs choix de réponses possibles" : "Une seule réponse possible";
+        }
+        <div class="pollDescriptionTitle">
+            <div class="formLine">
+                <h4 id="pollEntryType">Caractéristiques du sondage</h4>
+            </div>
+        </div>
+        <div class="pollContainerDescriptionForVoting">
+            <div class="pollDetails">
+                <h5 id="pollEntryType">@pollType</h5>
+                <h5 id="percantOfParticipation">Taux de participation : @Model.PollResponseRate %</h5>
+                <h5 id="totalOfParticipants">Nombre des participations : @Model.PollNumberOfVotesPerUser</h5>
+                <h5 id="totalOfGuests">Nombre total d'invités : @Model.PollNumberOfGuests</h5>
+            </div>
+        </div>
+        <div class="pollDescriptionTitle">
+            <div class="formLine">
+                <h4 id="pollEntryType">Dates</h4>
+            </div>
+        </div>
+        <div class="pollContainerDescriptionForVoting">
+            <div class="pollDetails">
+                <h5 id="pollEntryType">Date d'ouverture des participations : @Model.PollCreationDate.ToString("dd/MM/yyyy")</h5>
+                @if(Model.PollClosingDate != null)
+                {
+                    <h5 id="totalOfParticipants">Date de clôture des participations : @Model.PollClosingDate.Value.ToString("dd/MM/yyyy")</h5>
+                }
+            </div>
+        </div>
+</div>

@@ -1,0 +1,54 @@
+﻿@model AskMeAQuestion.Services.ViewModel.LoginViewModel
+
+@{
+    ViewData["Title"] = "Connexion";
+}
+
+
+<div id="notification">
+</div> 
+<div id="presentationForm">
+    <div class="text-center">        
+        <h1 class="display-4">&lsaquo;AskMeAQuestion&rsaquo;</h1>
+        <img src="~/lib/Images/logo.png" id="logoConnectionPage"/>
+    </div> 
+    <div class="text-center">
+        <form asp-action="Login">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" name="ReturnUrl" id="ReturnUrl" value="@Model.ReturnUrl"/>
+            <div class="form-group">
+                <input class="form-control" asp-for="UserLogin" placeholder="Login">
+                <span asp-validation-for="UserLogin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input class="form-control" asp-for="UserPassword" placeholder="Password">
+                <span asp-validation-for="UserPassword" class="text-danger"></span>
+            </div>
+            <div class="custom-control custom-switch">
+                <input class="custom-control-input" asp-for="UserOpenConnection">
+                <label class="custom-control-label" asp-for="UserOpenConnection" id="toggleSwitchText">Rester connecté</label>
+            </div>
+            <hr id="hrStyle"/>
+            <button type="submit" class="btn btn-primary" id="colorButton">Se connecter</button>
+        </form>
+    </div>
+    <div class="text-center" id="linkRelativePosition">
+        <p><a href="/Home/Subscription" id="linkColor">Pas encore de compte ? Inscrivez-vous ici.</a></p>
+    </div> 
+</div>  
+
+@section Scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+    @if(Model.MessageToUser == "ErrorConnection")
+    {        
+        <script type="text/javascript">
+            document.getElementById('notification').innerHTML = "<div><img class=\"logoFlag\" src=\"/lib/Images/noContribution.png\" /><span id=\"informationMessage\">Erreur d'identifiant ou de mot de passe</span></div><img src=\"/lib/Images/close.ico\" class=\"closePicture\" onclick=\"closeNotification()\"/>";
+            function closeNotification()
+            {
+                document.getElementById('notification').innerHTML = "";
+                window.location.href = "Login";
+            }   
+        </script>
+    }
+}

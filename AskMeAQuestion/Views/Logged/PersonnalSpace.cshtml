@@ -1,0 +1,214 @@
+﻿@model AskMeAQuestion.Services.ViewModel.PersonnalSpaceViewModel
+
+@{
+    Layout = "_LoggedLayout";
+    ViewData["Title"] = "Espace personnel";
+}
+
+<div id="personnalSpaceTitle">
+    <h2>Bienvenue sur votre espace personnel @Model.UserName !</h2>
+</div>
+<div id="notification">
+</div>    
+<div class="personnalSpaceView">
+    <div class="personnalSpaceContainerWithDescription">
+        <div class="headDisposition">
+            <div>
+                <h4>Mes sondages</h4>
+            </div>
+            <div>
+                <a href="~/Logged/PollCreation" id="colorButton" class="btn btn-primary">Nouveau sondage</a>
+            </div>
+        </div>
+        <div class="firstPersonnalSpaceContainer">
+            <div class="secondPersonnalSpaceContainer">
+                @for(int i = 0; i < Model.OwnPolls.Count(); i++)
+                {
+                    <div class="pollContainer">
+                        <div class="pollEssentialInfos">
+                            <div class="pollTitleContainer">
+                                <h5 class="overflowContainer">@Model.OwnPolls[i].PollTitle</h5>
+                            </div>
+                            <div class="pollDescriptionContainer">
+                                <h5>Description : </h5>
+                                <p class="overflowContainer">@Model.OwnPolls[i].PollDescription</p>
+                            </div>                             
+                        </div>
+                        <div class="pollFlagContainer">
+                            @if(Model.OwnPolls[i].PollAlreadyVoted && Model.OwnPolls[i].PollClosingDate == null)
+                            {
+                                <div class="insideFlag1">
+                                    <img src="~/lib/Images/Contribution.png" class="logoFlag"/>
+                                </div>
+                                <div class="insideFlag2">
+                                    <p class="pollFlagDescripiton">Votre contribution a bien été prise en compte</p>
+                                </div>
+                            }
+                            @if(Model.OwnPolls[i].PollAlreadyVoted && Model.OwnPolls[i].PollClosingDate != null)
+                            {
+                                <div class="insideFlag1">
+                                    <img src="~/lib/Images/Contribution.png" class="logoFlag"/>
+                                </div>
+                                <div class="insideFlag2">
+                                    <p class="pollFlagDescripiton">Vous aviez participé à cette enquête</p>
+                                </div>
+                            }                            
+                            @if(!Model.OwnPolls[i].PollAlreadyVoted && Model.OwnPolls[i].PollClosingDate == null)
+                            {
+                                <div class="insideFlag1">
+                                    <img src="~/lib/Images/noContribution.png" class="logoFlag"/>
+                                </div>
+                                <div class="insideFlag2">
+                                    <p class="pollFlagDescripiton">Vous n'avez pas encore participé à cette enquête</p>
+                                </div>
+                            }
+                            @if(!Model.OwnPolls[i].PollAlreadyVoted && Model.OwnPolls[i].PollClosingDate != null)
+                            {
+                                <div class="insideFlag1">
+                                    <img src="~/lib/Images/noContribution.png" class="logoFlag"/>
+                                </div>
+                                <div class="insideFlag2">
+                                    <p class="pollFlagDescripiton">Vous n'aviez pas participé à cette enquête</p>
+                                </div>
+                            }
+                        </div>
+                                               
+                        @{
+                            var buttonText = Model.OwnPolls[i].PollAlreadyVoted ? "Modifier votre vote" : "Voter";
+                            var ActiveButton = Model.OwnPolls[i].PollClosingDate == null ? true:false;
+                        }                        
+                        <div class="buttonsContainer">
+                            <form>
+                                <span id="participationCodeContainer"></span>                                    
+                                @if(ActiveButton)
+                                {
+                                    <button formmethod="get" formaction="PollClosing" type="submit" name="closingKey" value="@Model.OwnPolls[i].PollDeleteKey" class="formButton2 btn btn-primary pollButton">Clôturer</button>
+                                    <button formmethod="get" formaction="PollAddParticipant" type="submit" name="pollId" value="@Model.OwnPolls[i].PollId" class="formButton btn btn-primary pollButton">Gérer les participants</button>
+                                    <button formmethod="get" formaction="PollParticipation" type="submit" name="code" value="@Model.OwnPolls[i].PollAccessKey" class="formButton btn btn-primary pollButton">@buttonText</button>                                     
+                                }
+                                <button formmethod="get" formaction="PollGetLinks" type="submit" name="pollId" value="@Model.OwnPolls[i].PollId" class="formButton btn btn-primary pollButton">Liens utiles</button>
+                                <button formmethod="get" formaction="PollResults" type="submit" name="resultKey" value="@Model.OwnPolls[i].PollResultKey" class="formButton btn btn-primary pollButton">Résultats</button>
+                            </form>  
+                        </div>
+                        @{
+                            var dateStart = $"Sondage crée le {Model.OwnPolls[i].PollCreationDate.ToString("dd/MM/yyyy")}";
+                            var dateEnd = $"Sondage clôturé le {Model.OwnPolls[i].PollClosingDate.GetValueOrDefault().ToString("dd/MM/yyyy")}";
+                        }
+                        <div class="pollDatesContainer">
+                            <h6>@dateStart</h6>
+                        </div> 
+                        @if (!ActiveButton)
+                        {
+                            <div class="pollDatesContainer">
+                                <h6>@dateEnd</h6>
+                            </div> 
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="personnalSpaceContainerWithDescription">
+        <div class="headDisposition">
+            <div>
+                <h4>Mes participations</h4>
+            </div>
+            <div>
+                <form method="get" action="PollParticipation" onsubmit="return CheckForParticipation()">
+                    <button type="submit" id="colorButton" class="btn btn-primary">Participer à un sondage</button>
+                    <span id="insertCode"></span>
+                </form>
+            </div>
+        </div>
+        <div class="firstPersonnalSpaceContainer">
+            <div class="secondPersonnalSpaceContainer">
+                @for(int i = 0; i < Model.ParticipatedPolls.Count(); i++)
+                {
+                    <div class="pollContainer">
+                        <div class="pollEssentialInfos">
+                            <div class="pollTitleContainer">
+                                <h5>@Model.ParticipatedPolls[i].PollTitle</h5>
+                            </div>
+                            <div class="pollDescriptionContainer">
+                                <h5>Description : </h5>
+                                <p>@Model.ParticipatedPolls[i].PollDescription</p>
+                            </div>                             
+                        </div>
+                        <div class="pollFlagContainer">
+                            <div class="insideFlag1">
+                                <img src="~/lib/Images/Contribution.png" class="logoFlag"/>
+                            </div>
+                            <div class="insideFlag2">
+                                <p class="pollFlagDescripiton">Votre contribution a bien été prise en compte</p>
+                            </div>
+                        </div>                       
+                        <div class="buttonsContainer">
+                            <form>
+                                <span id="participationCodeContainer"></span>
+                                @if(Model.ParticipatedPolls[i].PollClosingDate == null)
+                                {
+                                    <button formmethod="get" formaction="PollParticipation" type="submit" name="code" value="@Model.ParticipatedPolls[i].PollAccessKey" class="formButton btn btn-primary pollButton">Modifier votre vote</button>
+                                }
+                                <button formmethod="get" formaction="PollResults" type="submit" name="resultKey" value="@Model.ParticipatedPolls[i].PollResultKey" class="formButton btn btn-primary pollButton">Résultats</button>
+                            </form>  
+                        </div>
+                        @{
+                            var dateStart = $"Sondage crée le {Model.ParticipatedPolls[i].PollCreationDate.ToString("dd/MM/yyyy")}";
+                            var dateEnd = $"Sondage clôturé le {Model.ParticipatedPolls[i].PollClosingDate.GetValueOrDefault().ToString("dd/MM/yyyy")}";
+                        }
+                        <div class="pollDatesContainer">
+                            <h6>@dateStart</h6>
+                        </div> 
+                        @if (Model.ParticipatedPolls[i].PollClosingDate != null)
+                        {
+                            <div class="pollDatesContainer">
+                                <h6>@dateEnd</h6>
+                            </div> 
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/Javascript.js" asp-append-version="true"></script>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    @if(Model.MessageToUser == "participantsAdded")
+    {
+        <script type="text/javascript">
+            document.getElementById('notification').innerHTML = "<div><img class=\"logoFlag\" src=\"/lib/Images/Contribution.png\" /><span id=\"informationMessage\">Liste des participants actualisée</span></div><img src=\"/lib/Images/close.ico\" class=\"closePicture\" onclick=\"closeNotification()\"/>";
+            function closeNotification()
+            {
+                document.getElementById('notification').innerHTML = "";
+                window.location.href = "PersonnalSpace";
+            }   
+        </script>
+    }
+    @if(Model.MessageToUser == "closedPoll")
+    {
+        <script type="text/javascript">
+            document.getElementById('notification').innerHTML = "<div><img class=\"logoFlag\" src=\"/lib/Images/Contribution.png\" /><span id=\"informationMessage\">Sondage vérouillé le @DateTime.Now.ToString("dd/MM/yyyy").</span></div><img src=\"/lib/Images/close.ico\" class=\"closePicture\" onclick=\"closeNotification()\"/>";
+            function closeNotification()
+            {
+                document.getElementById('notification').innerHTML = "";
+                window.location.href = "PersonnalSpace";
+            }  
+        </script>
+    }
+    @if(Model.MessageToUser == "noVote")
+    {
+        <script type="text/javascript">
+            document.getElementById('notification').innerHTML = "<div><img class=\"logoFlag\" src=\"/lib/Images/noContribution.png\" /><span id=\"informationMessage\">Impossible de participer à ce sondage</span></div><img src=\"/lib/Images/close.ico\" class=\"closePicture\" onclick=\"closeNotification()\"/>";
+            function closeNotification()
+            {
+                document.getElementById('notification').innerHTML = "";
+                window.location.href = "PersonnalSpace";
+            }  
+        </script>
+    }
+}

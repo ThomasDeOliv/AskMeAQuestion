@@ -1,0 +1,18 @@
+﻿@model ErrorViewModel
+@{
+    Layout = "_LoggedLayout";
+    ViewData["Title"] = "Error";
+}
+
+<div class="errorPage">
+
+    <h1 class="text-danger">Désolé, il semblerait qu'une erreur se soit produite</h1>
+
+    <div><img id="logoConnectionPage" src="~/lib/Images/logo.png"/></div>
+
+    @if(Model.ShowRequestId)
+    {
+        <p><strong>Request ID : </strong><code>@Model.RequestId</code></p>
+    }
+
+</div>

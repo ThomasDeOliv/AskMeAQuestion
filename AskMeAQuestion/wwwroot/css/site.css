@@ -1,0 +1,673 @@
+﻿.errorPage{
+    text-align: center;
+}
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+#navBarLogo{
+    width:50px;
+    margin-right: 20px;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+    color: #0366d6;
+}
+
+#notification {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 7px;
+    background-color: #385469;
+    width: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+#informationMessage {
+    margin-right: 10px;
+    margin-left: 10px;
+    padding: 10px;
+}
+
+.closePicture {
+    margin-right: 10px;
+    margin-left: 10px;
+    width: 15px;
+}
+
+.closePicture:hover{
+    cursor: pointer;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+#logoConnectionPage{
+    width: 250px;
+    margin: 20px 20px 20px 20px;
+}
+
+#linkRelativePosition {
+    margin: 20px 20px 20px 20px;
+}
+
+#linkColor {
+    color: white;
+    font-weight: bold;
+}
+
+#hrStyle {
+    border: 1px solid #1a2124;
+}
+
+#presentationForm {
+    font-family: Arial;
+    margin: 0 auto;
+    margin-top: 35px;
+    border-radius: 10px;
+    background-color: #385469;
+    color: white;
+    width: 600px;
+    padding: 10px 50px 10px 50px;
+    text-align: center;
+}
+
+#paragraphStyle {
+    color: white;
+    font-weight: bold;
+}
+
+#colorButton {
+    background-color: paleturquoise;
+    color: black;
+    border-radius: 10px;
+    font-weight: bold;
+    border: 0px;
+    width: 400px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#toggleSwitchText {
+    font-weight: bold;
+    color: #1a2124;
+    margin: 10px 10px 10px 10px;
+}
+
+.headDisposition {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 10px 10px 10px;
+}
+
+.customNavbar {
+    background-color: #385469;
+    height: 100%;
+    width: 100%;
+}
+
+.navbarDisposition {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 15px;
+    min-height: 60px;
+    max-height: 60px;
+}
+
+.linkNavbar{
+    color:white;
+    text-decoration: underline;
+}
+
+.titleApp {
+    color: white;
+    text-decoration: none;
+}
+
+.titleApp:hover {
+    color: white;
+}
+
+.linkNavbar:hover {
+    color: white;
+}
+
+.groupeNavbar {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.itemGroupNavbar{
+    margin-left: 50px;
+}
+
+.bodyTheme {
+    background-color: #1a2124;
+}
+
+.bodyTheme2 {
+    background-color: #1a2124;
+    color: white;
+}
+
+#personnalSpaceTitle{
+    text-align: center;
+}
+
+.firstPersonnalSpaceContainer {
+    height: 430px;
+    max-height: 430px;
+    border: 1px solid white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.secondPersonnalSpaceContainer {
+    margin-right: 30px; 
+    height: 430px;
+    max-height: 430px;
+    overflow-y: auto;
+}
+
+.secondPersonnalSpaceContainer::-webkit-scrollbar {
+    width: 5px;
+    height: 8px;
+    background-color: transparent;
+}
+
+.secondPersonnalSpaceContainer::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    height: 50px;
+    background: #000;
+}
+
+.personnalSpaceContainerWithDescription {
+    margin: 20px 20px 20px 20px;
+}
+
+.personnalSpaceView {
+    margin: 20px 20px 20px 20px;
+}
+
+.pollContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: normal;
+    align-items: center;
+    background-color: #385469;
+    border-radius: 10px;
+    padding: 10px 10px 10px 10px;
+    margin: 7px 7px 7px 7px;
+    min-height: 60%;
+    max-height: 100%;
+    overflow: hidden;
+}
+
+.pollEssentialInfos {
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 100%;
+}
+
+.formContainer{
+    margin: 3px;
+}
+
+.pollTitleContainer {
+    text-align: center;
+}
+
+.pollFlagContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.pollFlagDescripiton{
+    margin: auto;
+}
+
+.insideFlag1 {
+    margin-left: auto;
+}
+
+.insideFlag2 {
+    margin-right: auto;
+}
+
+.pollDatesContainer {
+    width: 100%;
+    margin: 5px;
+}
+
+#pollInfosContainer {
+    align-items: center;
+    justify-content: normal;
+}
+
+.logoFlag {
+    margin: 10px;
+    width: 20px;
+    height: 22px;
+}
+
+.textFlag {
+    margin: 10px;
+}
+
+.pollDescriptionContainer {
+    align-items: center;
+    border: 1px solid #1a2124;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.buttonsContainer {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 0;
+    margin-left: auto;
+    text-align: center;
+    justify-content: space-around;
+}
+
+.pollButton {
+    width: 200px;
+    text-align: center;
+    border-radius: 12px;
+    border: 0px;
+    color: black;
+}
+
+.formButton {
+    background-color: paleturquoise;
+    margin: 2px;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.formButton2 {
+    background-color: palevioletred;
+    margin: 2px;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.pollButton2 {
+    width: 200px;
+    text-align: center;
+    border-radius: 12px;
+}
+
+#toggleSwitchText{
+    color: white;
+}
+
+.customInput {
+    width: 100%;
+    border-radius: 5px;
+    background-color: #385469;
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+}
+
+.warning {
+    width: 100%;
+    text-align: center;
+    border: 0px;
+    background-color: #1a2124;
+    padding: 10px;
+    color: palevioletred;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.customInput::placeholder {
+    color: #1a2124;
+    font-weight: bold;
+}
+
+#upperContainer {
+    margin-left: 80px;
+    margin-right: 80px;
+    border-radius: 5px;
+    padding: 4px;
+    height: 410px;
+    max-height: 410px;
+    overflow-y: scroll;
+    background-color: #385469;
+    border: 1px solid black;
+}
+
+#lowerContainer {
+    margin-right: 10px;
+}
+
+
+#lowerAnswerContainer::-webkit-scrollbar {
+    width: 5px;
+    height: 8px;
+    background-color: transparent;
+}
+
+#lowerAnswerContainer::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    height: 50px;
+    background: #000;
+}
+
+
+.PollButtonSubmit {
+    margin-left: 80px;
+    margin-right: 80px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: right;
+}
+
+.pollContainerDescription {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 80px;
+    margin-right: 80px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.pollContainerDescriptionForVoting {
+    margin-left: 80px;
+    margin-right: 80px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.pollJavaScriptGenerator {
+    margin-left: 80px;
+    margin-right: 80px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pollEntryType {
+    margin: 20px;
+}
+
+#totalOfGuests {
+    margin: 20px;
+}
+
+#totalOfParticipants {
+    margin: 20px;
+}
+
+#answerProposition {
+    margin-left: auto;
+    margin-right: 20px;
+    width: 65%;
+}
+
+.deletePropositionButton {
+    background-color: palevioletred;
+    color: black;
+    border-radius: 10px;
+    font-weight: bold;
+    width: 200px;
+}
+
+.pollListItem {
+    border: 3px solid black;
+    background-color: #385469;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+    justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.proposition {
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-right: 30px;
+    margin-left: 30px;
+    text-align: center;
+    align-items: center;
+}
+
+.proposition2 {
+    background-color: #385469;
+    border: 0px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    justify-content: space-between;
+}
+
+.proposition:first-child{
+    text-align: left;
+}
+
+.proposition:nth-last-child(-n+2){
+    text-align: center;
+}
+
+.proposition:last-child {
+    text-align: right;
+}
+
+.overflowContainer {
+    width: 100%;
+    overflow:hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.formLine {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pollDescriptionTitle {
+    margin-right: 80px;
+    margin-left: 80px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#pollTitle {
+    border: 1px solid black;
+}
+
+#pollDescription {
+    resize: none;
+    border: 1px solid black;
+    min-height: 20%;
+    max-height: 20%;
+}
+
+#userEntry {
+    border: 1px solid black;
+    width: 90%;
+    margin-left: 0px;
+    margin-right: 5px;
+}
+
+#bottomUserEntry {
+    border: 1px solid black;
+    width: 90%;
+    margin-left: 0px;
+    margin-right: 5px;
+}
+
+.showEntry {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#buttonAddEntry {
+    background-color: paleturquoise;
+    color: black;
+    border-radius: 10px;
+    font-weight: bold;
+    border: 0px;
+    margin: 20px;
+}
+
+#buttonSubmitEntry {
+    background-color: paleturquoise;
+    color: black;
+    border-radius: 10px;
+    font-weight: bold;
+    border: 0px;
+    min-width: 22%;
+    max-width: 30%;
+}
+
+#buttonAddEntry:first-child {
+    width: 25%;
+}
+
+#buttonAddEntry:nth-child(2) {
+    width: 25%;
+    margin-left: 5px;
+    margin-right: 0px;
+}
+
+.pollCheckbox-label {
+    line-height: 2;
+    margin-left: 70px;
+}
+
+.pollCheckbox-entry {
+    zoom: 1.5;
+    position: absolute;
+    margin-left: 20px;
+}
+
+.pollDetails {
+    border-radius: 7px;
+    border: 1px solid black;
+    background-color:#385469;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.linkContainer {
+    min-width: 500px;
+    max-width: 700px;
+    text-align: center;
+    margin-top: 70px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.keyContainer {
+    background-color: #385469;
+    border: 1px solid black;
+    border-radius: 7px;
+    padding: 40px;
+    margin: 20px;
+}
+
+.participationKeyContainer{
+    margin-top: 50px;
+}
+
+.keyLinks {
+    color: paleturquoise;
+}
+
+.keyLinks:hover {
+    color: paleturquoise;
+}
+
+.keyAccess {
+    color: paleturquoise;
+}
+
+/* Override bootstrap pour toggle switch */
+.custom-control-input:focus ~
+.custom-control-label::before {
+    border-color: #385469 !important;
+    box-shadow: 0 0 0 0rem rgba(0, 0, 0, 0) !important;
+}
+
+/*sets the background color of switch when it is checked*/
+.custom-control-input:checked ~
+.custom-control-label::before {
+    border-color: #1a2124 !important; /*contour selectionné*/
+    background-color: paleturquoise !important; /*Intérieur checké*/
+}
+
+/*sets the background color of switch when it is active*/
+.custom-control-input:active ~
+.custom-control-label::before {
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+.custom-control-label::after {
+    background-color: #1a2124 !important; /*Couleur du bouton*/
+    border-color: #1a2124 !important;
+}
+
+/*sets the border color of switch when it is not checked*/
+.custom-control-input:focus:not(:checked) ~ .custom-control-label::before {
+    border-color: #385469 !important;
+}

@@ -1,0 +1,35 @@
+﻿@model AskMeAQuestion.Services.ViewModel.PollGetLinksViewModel
+
+@{
+    Layout = "_LoggedLayout";
+    ViewData["Title"] = @Model.PollTitle + " - Liens utiles";
+}
+
+<div id="personnalSpaceTitle">
+    <h2>Liens du sondage</h2>
+    <h4>Gardez précieusement ces liens.</h4>
+</div>
+<div class="linkContainer">
+    <div class="keyContainer">
+        <h5 class="headTable">Consultation des résultats</h5>
+        <p class="columnTable"><a href="@Model.PollResultLink" class="keyLinks">@Model.PollResultLink</a></p>
+    </div>
+    @if(Model.PollClosingDate == null)
+    {
+        <div class="keyContainer">
+            <h5 class="headTable">Participation pour les utilisateurs inscrits</h5>
+            <div class="participationKeyContainer">
+                <h6>Lien direct de participation</h6>
+                <p class="columnTable"><a href="@Model.PollParticipationLink" class="keyLinks">@Model.PollParticipationLink</a></p>
+            </div>
+            <div class="participationKeyContainer">
+                <h6>Code de participation à saisir depuis l'espace personnel</h6>
+                <p class="keyAccess">@Model.PollParticipationKey</p>
+            </div>
+        </div>
+        <div class="keyContainer">
+            <h5 class="headTable">Clôture pour l'administrateur</h5>
+            <p class="columnTable"><a href="@Model.PollClosingLink" class="keyLinks">@Model.PollClosingLink</a></p>
+        </div>
+    }
+</div>

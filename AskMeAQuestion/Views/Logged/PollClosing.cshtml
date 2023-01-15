@@ -1,0 +1,24 @@
+﻿@model AskMeAQuestion.Services.ViewModel.PollClosingViewModel
+
+@{
+    ViewData["Title"] = "Fermeture de votre sondage";
+}
+
+<form method="post" action="PollClosing" onsubmit="SubmitClosing()" hidden>
+    <input type="checkbox" id="alreadyClosed" checked="@Model.PollAlreadyClosed" name="PollAlreadyClosed"/>
+    <input type="text" id="sessionId" value="@Model.UserSession" name="UserSession"/>
+    <input type="text" id="closingKey" value="@Model.PollClosingKey" name="PollClosingKey"/>
+    <input type="submit" id="submitButton"/>
+</form>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script src="~/js/Javascript.js" asp-append-version="true"></script>
+    <script>
+        window.onload=function(){
+        document.getElementById("submitButton").click();
+        };
+    </script>
+}

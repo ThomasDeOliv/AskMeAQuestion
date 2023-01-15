@@ -1,0 +1,61 @@
+﻿@model AskMeAQuestion.Services.ViewModel.PollParticipationViewModel
+
+@{
+    Layout = "_LoggedLayout";
+    ViewData["Title"] = @Model.PollTitle + " - Vote";
+}
+
+<div id="personnalSpaceTitle">
+    <h2>Vote</h2>
+</div>
+<div class="pollCreatorContainer">
+    <form asp-action="PollParticipation" asp-controller="Logged" method="post" name="submitPollParticipation">
+        <div hidden><input class="customInput" asp-for="PollId" id="pollId"></div>
+        <div hidden><input class="customInput" asp-for="PollResultKey" id="pollResultKey"></div>
+        <div hidden><input class="customInput" asp-for="UserId" id="userId"></div>
+        <div hidden><input class="customInput" asp-for="PollMultipleAnswers" id="userId"></div>
+        <div class="PollButtonSubmit">
+            <button class="btn btn-primary" type="submit" id="buttonSubmitEntry" value="Publier" onclick="StringifyResults(@Model.Responses.Count())">Voter</button>
+        </div>
+        <div class="pollDescriptionTitle">
+            <div class="formLine">
+                <h4 class="pollEntryType">Titre</h4>
+                <input class="customInput" asp-for="PollTitle" id="pollTitle" placeholder="Titre" readonly>  
+            </div>                      
+            <span asp-validation-for="PollTitle" class="text-danger"></span>
+        </div>
+        <div class="pollDescriptionTitle">
+            <div class="formLine">
+                <h4 class="pollEntryType">Description</h4>
+                <textarea class="customInput" asp-for="PollDescription" id="pollDescription" placeholder="Description" readonly></textarea> 
+            </div>
+            <span asp-validation-for="PollDescription" class="text-danger"></span>
+        </div>
+        <div class="pollContainerDescriptionForVoting">
+            <span><h4 class="pollEntryType">Propositions :</h4></span>
+            @{
+                var message = Model.PollMultipleAnswers ? "Plusieurs choix de réponses possibles" : "Une seule réponse possible";
+                var inputType = Model.PollMultipleAnswers ? "checkbox" : "radio";
+            }
+            <span><h5 class="pollEntryType">@message</h5></span>
+        </div>   
+        <div id="upperContainer">
+            <div id="lowerContainer">                
+                @for(int i = 0; i < @Model.Responses.Count(); i++ )
+                {
+                    <div class="pollListItem">
+                        <div class="form-check">
+                            <input class="form-check-input pollCheckbox-entry" type="@inputType" id="@Model.Responses[i].ResponseId" name="PollVotedResponses" value="@Model.Responses[i].ResponseId" checked="@Model.Responses[i].ResponseIsSelected"/>
+                            <label class="form-check-label pollCheckbox-label" for="@Model.Responses[i].ResponseId">@Model.Responses[i].ResponseDescription</label>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>  
+        <div class="pollDescriptionTitle">
+            <div class="formLine">
+                <h4 class="pollEntryType">Nombre de participants : @Model.PollParticipantsNumber</h4> 
+            </div>
+        </div>
+    </form>
+</div>

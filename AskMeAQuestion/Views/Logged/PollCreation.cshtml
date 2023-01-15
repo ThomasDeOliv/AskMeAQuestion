@@ -1,0 +1,64 @@
+﻿@model AskMeAQuestion.Services.ViewModel.PollCreationViewModel
+
+@{
+    Layout = "_LoggedLayout";
+    ViewData["Title"] = "Nouveau sondage";
+}
+
+<div id="personnalSpaceTitle">
+    <h2>Création d'un sondage</h2>
+</div>
+<div class="pollCreatorContainer">
+    <form asp-action="PollCreation" asp-controller="Logged" method="post" onsubmit="return SubmitForm()">
+        <div class="pollDescriptionTitle">
+            <div class="formLine">
+                <h5 class="warning">Pour assurer la fiabilité de ce sondage et de ses résultats, aucune modification ultérieures à la publication ne sera autorisée.</h5>  
+            </div>                      
+        </div>
+        <div class="PollButtonSubmit">
+            <button class="btn btn-primary" id="buttonSubmitEntry" value="Publier">Publier le sondage</button>
+        </div>
+        <div class="pollDescriptionTitle">
+            <div class="formLine">
+                <h4 id="pollEntryType">Titre</h4>
+                <input class="customInput" asp-for="PollTitle" id="pollTitle" placeholder="Titre" maxlength="120"/>  
+            </div>                      
+            <span asp-validation-for="PollTitle" class="text-danger"></span>
+        </div>
+        <div class="pollDescriptionTitle">
+            <div class="formLine">
+                <h4 id="pollEntryType">Description</h4>
+                <textarea class="customInput" asp-for="PollDescription" id="pollDescription" placeholder="Description" maxlength="255"></textarea> 
+            </div>
+            <span asp-validation-for="PollDescription" class="text-danger"></span>
+        </div>
+        <div class="pollContainerDescription">
+            <span><h4 id="pollEntryType">Propositions de réponses</h4></span>
+            <div class="custom-control custom-switch">
+                <input class="custom-control-input" asp-for="PollMultipleAnswer">
+                <label class="custom-control-label" asp-for="PollMultipleAnswer" id="toggleSwitchText">Choix de réponses multiples</label>
+            </div>
+        </div>   
+        <div id="upperContainer">
+            <div id="lowerContainer">
+            </div>
+        </div>            
+    </form>
+    <div>
+        <div class="pollJavaScriptGenerator">
+            <h4 id="pollEntryType">Ajouter une nouvelle proposition</h4>
+            <div class="showEntry">
+                <input class="customInput" placeholder="Nouvelle proposition" type="text" id="bottomUserEntry" maxlength="120"/>
+                <input id="buttonAddEntry" class="btn btn-primary" onclick="AddToListAnswers()" type="button" value="Ajouter une réponse possible"/>
+            </div>
+            <span id="errorProposition" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/JavascriptAnswers.js" asp-append-version="true"></script>
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

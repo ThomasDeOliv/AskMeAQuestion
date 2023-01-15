@@ -1,0 +1,77 @@
+﻿@model AskMeAQuestion.Services.ViewModel.PollAddParticipantViewModel
+
+@{
+    Layout = "_LoggedLayout";
+    ViewData["Title"] = @Model.PollTitle + " - Inscription";
+}
+
+<div id="personnalSpaceTitle">
+    <h2>Gestion des participants</h2>
+</div>
+<div class="pollCreatorContainer">
+    <form asp-action="PollAddParticipant" asp-controller="Logged" method="post" onsubmit="return SubmitForm()">
+        <div class="pollDescriptionTitle">
+            <div class="formLine">
+                <h5 class="warning">Pour assurer la fiabilité des résultats, il ne sera plus possible de supprimer des invités de la liste des participants une fois celle-ci validée.</h5>  
+            </div>                      
+        </div>
+        <div hidden><input class="form-control" asp-for="PollId" id="pollId"></div>
+        <div class="PollButtonSubmit">
+            <button class="btn btn-primary" id="buttonSubmitEntry" type="submit">Valider votre liste d'invités</button>
+        </div>
+        <div class="pollDescriptionTitle">
+            <div class="formLine">
+                <h4 id="pollEntryType">Titre</h4>
+                <input class="customInput" asp-for="PollTitle" id="pollTitle" placeholder="Titre" disabled>  
+            </div>                      
+            <span asp-validation-for="PollTitle" class="text-danger"></span>
+        </div>
+        <div class="pollDescriptionTitle">
+            <div class="formLine">
+                <h4 id="pollEntryType">Description</h4>
+                <textarea class="customInput" asp-for="PollDescription" id="pollDescription" placeholder="Description" disabled></textarea> 
+            </div>
+            <span asp-validation-for="PollDescription" class="text-danger"></span>
+        </div>
+        <div class="pollContainerDescription">
+            <span><h4 id="pollEntryType">Adresses email des participants</h4></span>
+        </div>   
+        <div id="upperContainer">
+            <div id="lowerContainer">  
+                <input id="maxValuesPropositions" value="@Model.PollParticipants.Count()" hidden/>
+                @for(var i = 0; i < Model.PollParticipants.Count(); i++)
+                {
+                    <div class="pollListItem">
+                        <h5 class="proposition2">@Model.PollParticipants[i].ParticipantMail</h5>
+                        <input id="proposition[@i]" value="@Model.PollParticipants[i].ParticipantMail" class="proposition" hidden/>
+                        @if(Model.PollParticipants[i].ParticipantAlreadyVoted)
+                        {
+                            <h5 class="proposition2">Participation enregistrée</h5>
+                        }
+                        <h5 class="proposition2">Déjà inscrit</h5>
+                    </div>
+                }
+            </div>
+        </div>
+            
+    </form>
+    <div>
+        <div class="pollJavaScriptGenerator">
+            <h4 id="pollEntryType">Nouvelle adresse email à saisir</h4>            
+            <div class="showEntry">
+                <input class="customInput" placeholder="Adresse email" type="text" id="bottomUserEntry" maxlength="320"/>
+                <input id="buttonAddEntry" class="btn btn-primary" onclick="AddToListMails()" type="button" value="Ajouter un nouveau participant"/>
+            </div>
+            <span id="errorProposition" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/JavacriptMails.js" asp-append-version="true"></script>
+<script>OnLoadAddParticipants();</script>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
